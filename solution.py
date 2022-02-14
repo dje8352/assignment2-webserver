@@ -19,7 +19,7 @@ def webServer(port=13331):
     try:
 
       try:
-        message = "GET /helloworld.html"
+        message = connectionSocket.recv(1024)
         filename = message.split()[1]
         f = open(filename[1:])
         outputdata = f.read()
@@ -39,12 +39,12 @@ def webServer(port=13331):
         # Send response message for file not found (404)
         #Fill in start
         m1 = "HTTP/1.1 404 Not Found\r\n"
-        m2 = "Content-Type: text/html\r\n\r\n"
-        m3 = "<html><head></head><body><h1>404 Not Found</h1></body></html>"
+        #m2 = "Content-Type: text/html\r\n\r\n"
+        #m3 = "<html><head></head><body><h1>404 Not Found</h1></body></html>"
         connectionSocket.send(m1.encode())
-        connectionSocket.send(m2.encode())
-        connectionSocket.send(m3.encode())
-        connectionSocket.send("\r\n".encode())
+        #connectionSocket.send(m2.encode())
+        #connectionSocket.send(m3.encode())
+        #connectionSocket.send("\r\n".encode())
         #Fill in end
 
 
